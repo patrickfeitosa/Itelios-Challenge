@@ -1,0 +1,32 @@
+//Cores
+$color-primary:#fff;
+$color-active: black;
+$color-shadow: blue;
+
+//Tipografia
+
+
+// Variáveis do Grid
+$cols: 12;
+$gutter: 20px;
+$lg-device: 1200px;
+$md-device: 760px;
+$sm-device: 48px;
+
+
+// Mixin de media-queries
+@mixin device($size){
+    @if $size == lg{
+        @media screen and (min-width: #{$lg-device}) {
+            @content;
+        }
+    } @else if $size == md {
+        @media screen and (min-width: #{$md-device}) and (min-width: #{$lg-device} - 1) {
+            @content;
+        }
+    } @else if $size == sm {
+        @media screen and (min-width: #{$sm-device}) and (min-width: #{$md-device} - 1) {
+            @content;
+        }
+    }
+}
