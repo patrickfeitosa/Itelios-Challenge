@@ -11,9 +11,11 @@ const uglify = require('gulp-uglify');
 //Função para complilar o SASS e adicionar os prefixos
 function compilaSass(){
     return gulp.src('css/scss/*.scss')
-    .pipe(sass({
+    .pipe(sass(/*
+        Necessário apenas para ambiente de produção
+        {
         outputStyle: 'compressed'
-    }))
+    }*/))
     .pipe(autoprefixer({
         browsers: ['last 2 versions'],
         cascade: false
@@ -41,21 +43,6 @@ function gulpJS(){
 //Tarefa de Gulp para função de Concat
 gulp.task('mainjs', gulpJS);
 
-//Plugins JS
-
-function pluginsJS(){
-    return gulp
-    .src([
-        'node_modules/jquery/dist/jquery.min.js',
-        'node_modules/moment/min/moment.min.js'
-    ])
-    .pipe(concat('plugins.js'))
-    .pipe(gulp.dest('./dist/js/'))
-    .pipe(browserSync.stream()); 
-}
-
-gulp.task('pluginsjs', pluginsJS);
-
 //Função para iniciar o Browser
 function browser(){
     browserSync.init({
@@ -74,7 +61,6 @@ gulp.task('browser-sync', browser);
 function watch(){
     gulp.watch('css/scss/*.scss', compilaSass);
     gulp.watch('js/main/*.js', gulpJS);
-    gulp.watch('js/plugins/*.js', pluginsJS);
     gulp.watch(['./dist/**/*.html', './dist/**/*.php']).on('change', browserSync.reload);
 }
 
@@ -84,4 +70,4 @@ gulp.task('watch', watch);
 
 
 //Tarefa padrão do Gulp que inicia o Watch e browser-sync
-gulp.task('default', gulp.parallel('watch', 'browser-sync','sass', 'mainjs', 'pluginsjs'));
+gulp.task('default', gulp.parallel('watch', 'browser-sync','sass', 'mainjs'));

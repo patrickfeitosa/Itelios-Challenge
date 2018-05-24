@@ -4,3 +4,33 @@
     -moz-box-sizing: border-box; 
     box-sizing: border-box;
 }
+
+// Função de Grid
+@function grid($col, $offset: false){
+    $width: $col / $cols * 100 + %;
+    $result: calc(#{$width} - #{$gutter});
+
+    @if $offset == offset {
+        $gutter: $gutter / 2;
+        $result: calc(#{$width} + #{$gutter});
+    }
+    @return $result;
+}
+
+//Gerando as classes de Grid
+@for $i from 1 through $cols{
+    .grid-#{$i} {
+        width: grid($i);
+    }
+} 
+
+[class^="grid-"]{
+    @include grid-structure;
+}
+
+//Gerando as classes de Offset
+@for $i from 1 through $cols{
+    .offset-#{$i} {
+        margin-left: grid($i, offset);
+    }
+} 
