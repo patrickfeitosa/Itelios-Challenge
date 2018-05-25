@@ -17,3 +17,13 @@
 .product-price-install{
     @include type-price(17)  
 }
+
+.product-content{
+    padding: 40px 25px;
+    @include border-content($color-border);
+}
+
+.product-img{
+    max-width: 100%;
+    @include centered-item;
+}

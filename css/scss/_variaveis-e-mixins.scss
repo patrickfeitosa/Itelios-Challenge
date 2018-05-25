@@ -5,7 +5,8 @@ $color-shadow: #f4f4f4;
 $color-title: #5e6774;
 $color-regular: #303132;
 $color-price: #353f4f;
-$color-price-install: #5e6774;;
+$color-price-install: #5e6774;
+$color-border: #edeaea;
 
 //Tipografia
 @mixin type-title($size){
@@ -41,7 +42,7 @@ $cols: 12;
 $gutter: 20px;
 $lg-device: 1200px;
 $md-device: 760px;
-$sm-device: 48px;
+$sm-device: 480px;
 
 //Mixin de estrutura de grid
 @mixin grid-structure{
@@ -93,7 +94,7 @@ $sm-device: 48px;
     @include device(sm){
         max-width: $sm-device;
         padding-left: 10px;
-        padding-right: 10px
+        padding-right: 10px;
     }
 
     @include clearfix;
@@ -109,4 +110,14 @@ $sm-device: 48px;
         margin-right: 0;
     }
     @include clearfix;
+}
+
+//Mixin de Estilização
+@mixin border-content($color){
+    border: 1px solid $color;
+}
+
+@mixin centered-item{    
+    display: block;
+    margin: 0 auto;
 }
