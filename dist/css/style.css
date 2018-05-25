@@ -43,7 +43,10 @@
   min-height: 1px;
   margin-left: 10px;
   margin-right: 10px; }
-  @media screen and (max-width: 480px) {
+  @media screen and (min-width: 760px) and (max-width: 1199px) {
+    [class^="grid-"] {
+      width: 50%; } }
+  @media screen and (max-width: 759px) {
     [class^="grid-"] {
       width: 100%;
       float: none;
@@ -86,7 +89,7 @@
 .offset-12 {
   margin-left: calc(100% + 10px); }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 759px) {
   .offset-1, .offset-2, .offset-3, .offset-4, .offset-5, .offset-6, .offset-7, .offset-8, .offset-9, .offset-10, .offset-11, .offset-12 {
     margin-left: 0px; } }
 
@@ -94,10 +97,10 @@
   max-width: 1200px;
   margin: 0 auto;
   position: relative; }
-  @media screen and (min-width: 760px) and (min-width: 1200px - 1) {
+  @media screen and (min-width: 760px) and (max-width: 1199px) {
     .container {
       max-width: 760px; } }
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 759px) {
     .container {
       max-width: 480px;
       padding-left: 10px;
@@ -111,7 +114,7 @@
   position: relative;
   margin-left: -10px;
   margin-right: -10px; }
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 759px) {
     .row {
       margin-left: 0;
       margin-right: 0; } }
@@ -119,6 +122,10 @@
     content: '';
     display: table;
     clear: both; }
+
+.no-gutter {
+  margin-left: 0px !important;
+  margin-right: 0px !important; }
 
 .title {
   font-family: 'Roboto Condensed', sans-serif;
@@ -153,6 +160,14 @@
 .product-content {
   padding: 40px 25px;
   border: 1px solid #edeaea; }
+  @media screen and (min-width: 1200px) {
+    .product-content:nth-child(odd) {
+      border-top: 1px solid #edeaea;
+      border-bottom: 1px solid #edeaea;
+      border-right: 0px !important;
+      border-left: 0px !important; }
+    .product-content:last-child {
+      border-right: 1px solid #edeaea !important; } }
 
 .product-img {
   max-width: 100%;

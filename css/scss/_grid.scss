@@ -49,3 +49,8 @@
 .row{
     @include row;
 }
+
+.no-gutter{
+    margin-left: 0px !important; 
+    margin-right: 0px !important;
+}

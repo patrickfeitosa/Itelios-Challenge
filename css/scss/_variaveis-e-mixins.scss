@@ -41,7 +41,9 @@ $color-border: #edeaea;
 $cols: 12;
 $gutter: 20px;
 $lg-device: 1200px;
+$lg-device-limiter: $lg-device - 1;
 $md-device: 760px;
+$md-device-limiter: $md-device - 1;
 $sm-device: 480px;
 
 //Mixin de estrutura de grid
@@ -50,6 +52,9 @@ $sm-device: 480px;
     min-height: 1px;
     margin-left: $gutter / 2; 
     margin-right: $gutter / 2; 
+    @include device(md){
+        width: 50%;
+    }
     @include device(sm){
         width: 100%;
         float: none;
@@ -65,11 +70,11 @@ $sm-device: 480px;
             @content;
         }
     } @else if $size == md {
-        @media screen and (min-width: #{$md-device}) and (min-width: #{$lg-device} - 1) {
+        @media screen and (min-width: #{$md-device}) and (max-width: #{$lg-device-limiter}) {
             @content;
         }
     } @else if $size == sm {
-        @media screen and (max-width: #{$sm-device}){
+        @media screen and (max-width: #{$md-device-limiter}){
             @content;
         }
     }
@@ -115,6 +120,17 @@ $sm-device: 480px;
 //Mixin de Estilização
 @mixin border-content($color){
     border: 1px solid $color;
+    @include device(lg){
+        &:nth-child(odd){            
+            border-top: 1px solid $color;
+            border-bottom: 1px solid $color;
+            border-right: 0px !important; 
+            border-left: 0px !important; 
+        }
+        &:last-child{            
+            border-right: 1px solid $color !important; 
+        }
+    }    
 }
 
 @mixin centered-item{    
