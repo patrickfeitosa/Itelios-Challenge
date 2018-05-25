@@ -43,3 +43,40 @@ $sm-device: 48px;
         }
     }
 }
+
+// Mixin para clearfix
+@mixin clearfix{
+    &::after, &::before{
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin container{
+    max-width: $lg-device;
+    margin: 0 auto;
+    position: relative;
+    @include device(md){
+        max-width: $md-device;
+    }
+    @include device(sm){
+        max-width: $sm-device;
+        padding-left: 10px;
+        padding-right: 10px
+    }
+
+    @include clearfix;
+}
+
+// Mixin de linha
+@mixin row{
+    position: relative;
+    margin-left: -$gutter/2;
+    margin-right: -$gutter/2;
+    @include device(sm){        
+        margin-left: 0;
+        margin-right: 0;
+    }
+    @include clearfix;
+}

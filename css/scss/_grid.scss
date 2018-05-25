@@ -32,5 +32,20 @@
 @for $i from 1 through $cols{
     .offset-#{$i} {
         margin-left: grid($i, offset);
+        @extend %offset;
     }
-} 
+}
+
+@include device(sm){
+    %offset{
+        margin-left: 0px;
+    }
+}
+
+.container{
+    @include container;
+}
+
+.row{
+    @include row;
+}
