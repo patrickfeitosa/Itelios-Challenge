@@ -1,9 +1,39 @@
 //Cores
 $color-primary:#fff;
-$color-active: black;
-$color-shadow: blue;
+$color-active: #ff6600;
+$color-shadow: #f4f4f4;
+$color-title: #5e6774;
+$color-regular: #303132;
+$color-price: #353f4f;
+$color-price-install: #5e6774;;
 
 //Tipografia
+@mixin type-title($size){
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: bold;
+    font-size: $size + px;
+    color: $color-title;
+}
+
+@mixin type-regular($size){
+    font-family: 'Roboto', sans-serif;
+    font-size: $size + px;
+    color: $color-regular;
+}
+
+@mixin type-install($size){
+    font-size: $size + px;
+    font-family: 'Roboto', sans-serif;
+    color: $color-price-install;
+}
+
+@mixin type-price($size){
+    font-size: $size + px;
+    color: $color-price !important;
+    font-weight: bold !important;
+    font-family: 'Roboto Black', sans-serif;
+    line-height: 33px;
+}
 
 
 // Variáveis do Grid

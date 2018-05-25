@@ -119,3 +119,33 @@
     content: '';
     display: table;
     clear: both; }
+
+.title {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: bold;
+  font-size: 29px;
+  color: #5e6774; }
+
+.info-product {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color: #303132; }
+
+.product-price {
+  font-size: 23px;
+  color: #353f4f !important;
+  font-weight: bold !important;
+  font-family: 'Roboto Black', sans-serif;
+  line-height: 33px; }
+
+.product-install {
+  font-size: 17px;
+  font-family: 'Roboto', sans-serif;
+  color: #5e6774; }
+
+.product-price-install {
+  font-size: 17px;
+  color: #353f4f !important;
+  font-weight: bold !important;
+  font-family: 'Roboto Black', sans-serif;
+  line-height: 33px; }

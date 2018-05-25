@@ -1,0 +1,19 @@
+.title{
+    @include type-title(29);
+}
+
+.info-product{
+    @include type-regular(16);
+}
+
+.product-price{
+    @include type-price(23)
+}
+
+.product-install{
+    @include type-install(17)
+}
+
+.product-price-install{
+    @include type-price(17)  
+}
