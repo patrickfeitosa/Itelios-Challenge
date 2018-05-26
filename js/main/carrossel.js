@@ -113,7 +113,6 @@ class Carrossel{
 
 
     onWindowResize(){
-        console.log(window.innerWidth)
         let mobile = window.innerWidth < 1199
         if(mobile !== this.isMobile){
             this.isMobile = mobile
@@ -153,7 +152,8 @@ class Carrossel{
 document.addEventListener('DOMContentLoaded', function(){
     
     new Carrossel(document.querySelector('#productRecomendation'),{
-        slidesVisible: 3
+        slidesVisible: 3,
+        slidesToScroll: 1
     })
 
 })
