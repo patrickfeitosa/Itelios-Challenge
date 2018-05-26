@@ -14,13 +14,26 @@ class Carrossel{
             slidesToScroll: 1,
             slidesVisible: 1
         }, options)
-
-        let root = document.createElement('div')
-        root.setAttribute('class', 'carrossel')
+        this.children = [].slice.call(element.children)
+        let root = this.createDivWithClass('carrossel')
+        let container = this.createDivWithClass('carrossel-container')
+        root.appendChild(container)
         this.element.appendChild(root)
+        this.children.forEach(child => {
+            container.appendChild(child)
+        });
     }
 
-    
+    /**
+     * 
+     * @param {string} className nome da classe para a div
+     * @returns {HTMLElement}
+     */
+    createDivWithClass(className){
+        let div = document.createElement('div')
+        div.setAttribute('class', className)
+        return div
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function(){
