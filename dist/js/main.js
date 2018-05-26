@@ -35,6 +35,7 @@ var Carrossel = function () {
             loop: false
         }, options);
         var children = [].slice.call(element.children);
+        this.isMobile = true;
         this.currentItem = 0;
         this.root = this.createDivWithClass('carrossel');
         this.container = this.createDivWithClass('carrossel-container');
@@ -64,10 +65,10 @@ var Carrossel = function () {
         value: function setStyle() {
             var _this2 = this;
 
-            var ratio = this.itens.length / this.options.slidesVisible;
+            var ratio = this.itens.length / this.slidesVisible;
             this.container.style.width = ratio * 100 + "%";
             this.itens.forEach(function (item) {
-                return item.style.width = 100 / _this2.options.slidesVisible / ratio + "%";
+                return item.style.width = 100 / _this2.slidesVisible / ratio + "%";
             });
         }
     }, {
@@ -91,7 +92,7 @@ var Carrossel = function () {
                     prevButton.classList.remove('carrossel-prev-hidden');
                 }
 
-                if (_this3.itens[_this3.currentItem + _this3.options.slidesVisible] === undefined) {
+                if (_this3.itens[_this3.currentItem + _this3.slidesVisible] === undefined) {
                     nextButton.classList.add('carrossel-next-hidden');
                 } else {
                     nextButton.classList.remove('carrossel-next-hidden');
@@ -101,12 +102,12 @@ var Carrossel = function () {
     }, {
         key: 'next',
         value: function next() {
-            this.goToItem(this.currentItem + this.options.slidesToScroll);
+            this.goToItem(this.currentItem + this.slidesToScroll);
         }
     }, {
         key: 'prev',
         value: function prev() {
-            this.goToItem(this.currentItem - this.options.slidesToScroll);
+            this.goToItem(this.currentItem - this.slidesToScroll);
         }
 
         /**
@@ -153,6 +154,26 @@ var Carrossel = function () {
             var div = document.createElement('div');
             div.setAttribute('class', className);
             return div;
+        }
+
+        /**
+         * @returns {number} 
+         */
+
+    }, {
+        key: 'slidesToScroll',
+        get: function get() {
+            return this.isMobile ? 1 : this.options.slidesToScroll;
+        }
+
+        /**
+         * @returns {number} 
+         */
+
+    }, {
+        key: 'slidesVisible',
+        get: function get() {
+            return this.isMobile ? 1 : this.options.slidesVisible;
         }
     }]);
 

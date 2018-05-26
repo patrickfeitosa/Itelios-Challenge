@@ -24,6 +24,7 @@ class Carrossel{
             loop: false
         }, options)
         let children = [].slice.call(element.children)
+        this.isMobile = true
         this.currentItem = 0
         this.root = this.createDivWithClass('carrossel')
         this.container = this.createDivWithClass('carrossel-container')
@@ -45,9 +46,9 @@ class Carrossel{
      * Aplica os tamanhos para os itens do carrossel
      */
     setStyle(){
-        let ratio = this.itens.length / this.options.slidesVisible
+        let ratio = this.itens.length / this.slidesVisible
         this.container.style.width = (ratio * 100) + "%"
-        this.itens.forEach(item => item.style.width = ((100/this.options.slidesVisible) / ratio) + "%");
+        this.itens.forEach(item => item.style.width = ((100/this.slidesVisible) / ratio) + "%");
     }
 
     createNavigation(){
@@ -67,7 +68,7 @@ class Carrossel{
                 prevButton.classList.remove('carrossel-prev-hidden')
             }
 
-            if(this.itens[this.currentItem + this.options.slidesVisible] === undefined ){
+            if(this.itens[this.currentItem + this.slidesVisible] === undefined ){
                 nextButton.classList.add('carrossel-next-hidden')
             } else {
                 nextButton.classList.remove('carrossel-next-hidden')
@@ -77,11 +78,11 @@ class Carrossel{
 
 
     next(){
-        this.goToItem(this.currentItem + this.options.slidesToScroll)
+        this.goToItem(this.currentItem + this.slidesToScroll)
     }
 
     prev(){
-        this.goToItem(this.currentItem - this.options.slidesToScroll)
+        this.goToItem(this.currentItem - this.slidesToScroll)
     }
 
     /**
@@ -118,6 +119,22 @@ class Carrossel{
         let div = document.createElement('div')
         div.setAttribute('class', className)
         return div
+    }
+
+
+    /**
+     * @returns {number} 
+     */
+    get slidesToScroll(){
+        return this.isMobile ? 1 : this.options.slidesToScroll
+    }
+
+
+    /**
+     * @returns {number} 
+     */
+    get slidesVisible(){
+        return this.isMobile ? 1 : this.options.slidesVisible
     }
 }
 
