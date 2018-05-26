@@ -91,7 +91,7 @@ class Carrossel{
     goToItem(index){
         if(index < 0){
             index = this.itens.length - this.options.slidesVisible
-        }else if(index >= this.itens.length || this.itens[this.currentItem + this.options.slidesVisible] === undefined){
+        }else if(index >= this.itens.length || (this.itens[this.currentItem + this.options.slidesVisible] === undefined && index > this.currentItem )){
             index = 0
         }
         let translateX = index * -100 / this.itens.length
@@ -124,8 +124,7 @@ class Carrossel{
 document.addEventListener('DOMContentLoaded', function(){
     
     new Carrossel(document.querySelector('#productRecomendation'),{
-        slidesVisible: 3,
-        loop: true
+        slidesVisible: 3
     })
 
 })
