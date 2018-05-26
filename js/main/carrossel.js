@@ -7,9 +7,20 @@ class Carrossel{
      * @param {Object} option.slidesToScroll quantidade de itens por salto
      * @param {Object} option.slidesVisible quantidade de itens visivel
      */
-    constructor(element, option = {}){
 
+    constructor(element, options = {}){
+        this.element = element
+        this.option = Object.assign({},{
+            slidesToScroll: 1,
+            slidesVisible: 1
+        }, options)
+
+        let root = document.createElement('div')
+        root.setAttribute('class', 'carrossel')
+        this.element.appendChild(root)
     }
+
+    
 }
 
 document.addEventListener('DOMContentLoaded', function(){
