@@ -10,18 +10,28 @@ class Carrossel{
 
     constructor(element, options = {}){
         this.element = element
-        this.option = Object.assign({},{
+        this.options = Object.assign({},{
             slidesToScroll: 1,
             slidesVisible: 1
         }, options)
-        this.children = [].slice.call(element.children)
+        let children = [].slice.call(element.children)
         let root = this.createDivWithClass('carrossel')
-        let container = this.createDivWithClass('carrossel-container')
-        root.appendChild(container)
+        this.container = this.createDivWithClass('carrossel-container')
+        root.appendChild(this.container)
         this.element.appendChild(root)
-        this.children.forEach(child => {
-            container.appendChild(child)
+        this.itens = children.map(child => {
+            let item = this.createDivWithClass('carrossel-item')
+            item.appendChild(child)
+            this.container.appendChild(item)
+            return item
         });
+        this.setStyle()
+    }
+
+    setStyle(){
+        let ratio = this.itens.length / this.options.slidesVisible
+        this.container.style.width = (ratio * 100) + "%"
+        this.itens.forEach(item => item.style.width = ((100/this.options.slidesVisible) / ratio) + "%");
     }
 
     /**
@@ -39,7 +49,6 @@ class Carrossel{
 document.addEventListener('DOMContentLoaded', function(){
     
     new Carrossel(document.querySelector('#productRecomendation'),{
-        slidesToScroll: 3,
         slidesVisible: 3
     })
 

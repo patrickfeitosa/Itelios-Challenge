@@ -15,33 +15,50 @@ var Carrossel = function () {
      */
 
     function Carrossel(element) {
+        var _this = this;
+
         var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
         _classCallCheck(this, Carrossel);
 
         this.element = element;
-        this.option = Object.assign({}, {
+        this.options = Object.assign({}, {
             slidesToScroll: 1,
             slidesVisible: 1
         }, options);
-        this.children = [].slice.call(element.children);
+        var children = [].slice.call(element.children);
         var root = this.createDivWithClass('carrossel');
-        var container = this.createDivWithClass('carrossel-container');
-        root.appendChild(container);
+        this.container = this.createDivWithClass('carrossel-container');
+        root.appendChild(this.container);
         this.element.appendChild(root);
-        this.children.forEach(function (child) {
-            container.appendChild(child);
+        this.itens = children.map(function (child) {
+            var item = _this.createDivWithClass('carrossel-item');
+            item.appendChild(child);
+            _this.container.appendChild(item);
+            return item;
         });
+        this.setStyle();
     }
 
-    /**
-     * 
-     * @param {string} className nome da classe para a div
-     * @returns {HTMLElement}
-     */
-
-
     _createClass(Carrossel, [{
+        key: 'setStyle',
+        value: function setStyle() {
+            var _this2 = this;
+
+            var ratio = this.itens.length / this.options.slidesVisible;
+            this.container.style.width = ratio * 100 + "%";
+            this.itens.forEach(function (item) {
+                return item.style.width = 100 / _this2.options.slidesVisible / ratio + "%";
+            });
+        }
+
+        /**
+         * 
+         * @param {string} className nome da classe para a div
+         * @returns {HTMLElement}
+         */
+
+    }, {
         key: 'createDivWithClass',
         value: function createDivWithClass(className) {
             var div = document.createElement('div');
@@ -56,7 +73,6 @@ var Carrossel = function () {
 document.addEventListener('DOMContentLoaded', function () {
 
     new Carrossel(document.querySelector('#productRecomendation'), {
-        slidesToScroll: 3,
         slidesVisible: 3
     });
 });
