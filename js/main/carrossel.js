@@ -1,18 +1,27 @@
 class Carrossel{
 
+
+    /**
+     * @callback moveCallback
+     * @param {number} index
+     * 
+     */
+
     /**
      * 
      * @param {HTMLDocument} element 
-     * @param {Object} option 
-     * @param {Object} option.slidesToScroll quantidade de itens por salto
-     * @param {Object} option.slidesVisible quantidade de itens visivel
+     * @param {Object} options
+     * @param {Object} [options.slidesToScroll=1] quantidade de itens por salto
+     * @param {Object} [options.slidesVisible=1] quantidade de itens visivel
+     * @param {boolean} [options.loop=false] permitir o loop do carrossel
      */
 
     constructor(element, options = {}){
         this.element = element
         this.options = Object.assign({},{
             slidesToScroll: 1,
-            slidesVisible: 1
+            slidesVisible: 1,
+            loop: false
         }, options)
         let children = [].slice.call(element.children)
         this.currentItem = 0
@@ -20,6 +29,7 @@ class Carrossel{
         this.container = this.createDivWithClass('carrossel-container')
         this.root.appendChild(this.container)
         this.element.appendChild(this.root)
+        this.moveCallback = []
         this.itens = children.map(child => {
             let item = this.createDivWithClass('carrossel-item')
             item.appendChild(child)
@@ -28,6 +38,7 @@ class Carrossel{
         });
         this.setStyle()
         this.createNavigation()
+        this.moveCallback.forEach(cb => cb(0))
     }
 
     /**
@@ -46,6 +57,22 @@ class Carrossel{
         this.root.appendChild(prevButton)
         nextButton.addEventListener('click', this.next.bind(this))
         prevButton.addEventListener('click', this.prev.bind(this))
+        if(this.options.loop === true){
+            return
+        }
+        this.onMove(index =>{
+            if(index === 0 ){
+                prevButton.classList.add('carrossel-prev-hidden')
+            } else {
+                prevButton.classList.remove('carrossel-prev-hidden')
+            }
+
+            if(this.itens[this.currentItem + this.options.slidesVisible] === undefined ){
+                nextButton.classList.add('carrossel-next-hidden')
+            } else {
+                nextButton.classList.remove('carrossel-next-hidden')
+            }
+        })
     }
 
 
@@ -70,7 +97,18 @@ class Carrossel{
         let translateX = index * -100 / this.itens.length
         this.container.style.transform = 'translate3d(' + translateX + '%, 0, 0)'
         this.currentItem = index
+        this.moveCallback.forEach(cb => cb(index))
     }
+
+    /**
+     * 
+     * @param {moveCallback} cb 
+     */
+    onMove(cb){
+        this.moveCallback.push(cb)
+    }
+
+
     /**
      * 
      * @param {string} className nome da classe para a div
@@ -86,7 +124,8 @@ class Carrossel{
 document.addEventListener('DOMContentLoaded', function(){
     
     new Carrossel(document.querySelector('#productRecomendation'),{
-        slidesVisible: 3
+        slidesVisible: 3,
+        loop: true
     })
 
 })

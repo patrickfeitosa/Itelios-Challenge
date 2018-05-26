@@ -7,11 +7,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var Carrossel = function () {
 
     /**
+     * @callback moveCallback
+     * @param {number} index
+     * 
+     */
+
+    /**
      * 
      * @param {HTMLDocument} element 
-     * @param {Object} option 
-     * @param {Object} option.slidesToScroll quantidade de itens por salto
-     * @param {Object} option.slidesVisible quantidade de itens visivel
+     * @param {Object} options
+     * @param {Object} [options.slidesToScroll=1] quantidade de itens por salto
+     * @param {Object} [options.slidesVisible=1] quantidade de itens visivel
+     * @param {boolean} [options.loop=false] permitir o loop do carrossel
      */
 
     function Carrossel(element) {
@@ -24,7 +31,8 @@ var Carrossel = function () {
         this.element = element;
         this.options = Object.assign({}, {
             slidesToScroll: 1,
-            slidesVisible: 1
+            slidesVisible: 1,
+            loop: false
         }, options);
         var children = [].slice.call(element.children);
         this.currentItem = 0;
@@ -32,6 +40,7 @@ var Carrossel = function () {
         this.container = this.createDivWithClass('carrossel-container');
         this.root.appendChild(this.container);
         this.element.appendChild(this.root);
+        this.moveCallback = [];
         this.itens = children.map(function (child) {
             var item = _this.createDivWithClass('carrossel-item');
             item.appendChild(child);
@@ -40,6 +49,9 @@ var Carrossel = function () {
         });
         this.setStyle();
         this.createNavigation();
+        this.moveCallback.forEach(function (cb) {
+            return cb(0);
+        });
     }
 
     /**
@@ -61,12 +73,30 @@ var Carrossel = function () {
     }, {
         key: 'createNavigation',
         value: function createNavigation() {
+            var _this3 = this;
+
             var nextButton = this.createDivWithClass('carrossel-next');
             var prevButton = this.createDivWithClass('carrossel-prev');
             this.root.appendChild(nextButton);
             this.root.appendChild(prevButton);
             nextButton.addEventListener('click', this.next.bind(this));
             prevButton.addEventListener('click', this.prev.bind(this));
+            if (this.options.loop === true) {
+                return;
+            }
+            this.onMove(function (index) {
+                if (index === 0) {
+                    prevButton.classList.add('carrossel-prev-hidden');
+                } else {
+                    prevButton.classList.remove('carrossel-prev-hidden');
+                }
+
+                if (_this3.itens[_this3.currentItem + _this3.options.slidesVisible] === undefined) {
+                    nextButton.classList.add('carrossel-next-hidden');
+                } else {
+                    nextButton.classList.remove('carrossel-next-hidden');
+                }
+            });
         }
     }, {
         key: 'next',
@@ -95,7 +125,22 @@ var Carrossel = function () {
             var translateX = index * -100 / this.itens.length;
             this.container.style.transform = 'translate3d(' + translateX + '%, 0, 0)';
             this.currentItem = index;
+            this.moveCallback.forEach(function (cb) {
+                return cb(index);
+            });
         }
+
+        /**
+         * 
+         * @param {moveCallback} cb 
+         */
+
+    }, {
+        key: 'onMove',
+        value: function onMove(cb) {
+            this.moveCallback.push(cb);
+        }
+
         /**
          * 
          * @param {string} className nome da classe para a div
@@ -117,7 +162,8 @@ var Carrossel = function () {
 document.addEventListener('DOMContentLoaded', function () {
 
     new Carrossel(document.querySelector('#productRecomendation'), {
-        slidesVisible: 3
+        slidesVisible: 3,
+        loop: true
     });
 });
 
