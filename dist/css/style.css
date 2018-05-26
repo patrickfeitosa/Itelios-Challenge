@@ -3,40 +3,40 @@
   box-sizing: border-box; }
 
 .grid-1 {
-  width: calc(8.33333% - 20px); }
+  width: 8.33333%; }
 
 .grid-2 {
-  width: calc(16.66667% - 20px); }
+  width: 16.66667%; }
 
 .grid-3 {
-  width: calc(25% - 20px); }
+  width: 25%; }
 
 .grid-4 {
-  width: calc(33.33333% - 20px); }
+  width: 33.33333%; }
 
 .grid-5 {
-  width: calc(41.66667% - 20px); }
+  width: 41.66667%; }
 
 .grid-6 {
-  width: calc(50% - 20px); }
+  width: 50%; }
 
 .grid-7 {
-  width: calc(58.33333% - 20px); }
+  width: 58.33333%; }
 
 .grid-8 {
-  width: calc(66.66667% - 20px); }
+  width: 66.66667%; }
 
 .grid-9 {
-  width: calc(75% - 20px); }
+  width: 75%; }
 
 .grid-10 {
-  width: calc(83.33333% - 20px); }
+  width: 83.33333%; }
 
 .grid-11 {
-  width: calc(91.66667% - 20px); }
+  width: 91.66667%; }
 
 .grid-12 {
-  width: calc(100% - 20px); }
+  width: 100%; }
 
 [class^="grid-"] {
   float: left;
@@ -54,40 +54,40 @@
       margin-left: 0px; } }
 
 .offset-1 {
-  margin-left: calc(8.33333% + 10px); }
+  margin-left: calc(8.33333 + 10px); }
 
 .offset-2 {
-  margin-left: calc(16.66667% + 10px); }
+  margin-left: calc(16.66667 + 10px); }
 
 .offset-3 {
-  margin-left: calc(25% + 10px); }
+  margin-left: calc(25 + 10px); }
 
 .offset-4 {
-  margin-left: calc(33.33333% + 10px); }
+  margin-left: calc(33.33333 + 10px); }
 
 .offset-5 {
-  margin-left: calc(41.66667% + 10px); }
+  margin-left: calc(41.66667 + 10px); }
 
 .offset-6 {
-  margin-left: calc(50% + 10px); }
+  margin-left: calc(50 + 10px); }
 
 .offset-7 {
-  margin-left: calc(58.33333% + 10px); }
+  margin-left: calc(58.33333 + 10px); }
 
 .offset-8 {
-  margin-left: calc(66.66667% + 10px); }
+  margin-left: calc(66.66667 + 10px); }
 
 .offset-9 {
-  margin-left: calc(75% + 10px); }
+  margin-left: calc(75 + 10px); }
 
 .offset-10 {
-  margin-left: calc(83.33333% + 10px); }
+  margin-left: calc(83.33333 + 10px); }
 
 .offset-11 {
-  margin-left: calc(91.66667% + 10px); }
+  margin-left: calc(91.66667 + 10px); }
 
 .offset-12 {
-  margin-left: calc(100% + 10px); }
+  margin-left: calc(100 + 10px); }
 
 @media screen and (max-width: 759px) {
   .offset-1, .offset-2, .offset-3, .offset-4, .offset-5, .offset-6, .offset-7, .offset-8, .offset-9, .offset-10, .offset-11, .offset-12 {
@@ -187,26 +187,50 @@
 .carrossel-item {
   float: left; }
 
-.carrossel-next, .carrossel-prev {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  background-color: #303132;
-  border-radius: 50%;
-  top: 50%;
-  margin-top: -20px;
-  right: -20px;
-  cursor: pointer;
-  -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
-  transition: opacity 0.3s, -webkit-transform 0.3s;
-  transition: transform 0.3s, opacity 0.3s;
-  transition: transform 0.3s, opacity 0.3s, -webkit-transform 0.3s; }
-  .carrossel-next-hidden, .carrossel-prev-hidden {
-    display: none; }
-  .carrossel-next:hover, .carrossel-prev:hover {
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2); }
+@media screen and (min-width: 760px) and (max-width: 1199px) {
+  .carrossel-next, .carrossel-prev {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #303132;
+    border-radius: 50%;
+    top: 50%;
+    margin-top: -20px;
+    right: -20px;
+    cursor: pointer;
+    -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+    transition: opacity 0.3s, -webkit-transform 0.3s;
+    transition: transform 0.3s, opacity 0.3s;
+    transition: transform 0.3s, opacity 0.3s, -webkit-transform 0.3s; }
+    .carrossel-next-hidden, .carrossel-prev-hidden {
+      display: none; }
+    .carrossel-next:hover, .carrossel-prev:hover {
+      -webkit-transform: scale(1.2);
+      transform: scale(1.2); }
+  .carrossel-prev {
+    right: auto;
+    left: -20px; } }
 
-.carrossel-prev {
-  right: auto;
-  left: -20px; }
+@media screen and (max-width: 759px) {
+  .carrossel-next, .carrossel-prev {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #303132;
+    border-radius: 50%;
+    top: 50%;
+    margin-top: -20px;
+    right: -20px;
+    cursor: pointer;
+    -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+    transition: opacity 0.3s, -webkit-transform 0.3s;
+    transition: transform 0.3s, opacity 0.3s;
+    transition: transform 0.3s, opacity 0.3s, -webkit-transform 0.3s; }
+    .carrossel-next-hidden, .carrossel-prev-hidden {
+      display: none; }
+    .carrossel-next:hover, .carrossel-prev:hover {
+      -webkit-transform: scale(1.2);
+      transform: scale(1.2); }
+  .carrossel-prev {
+    right: auto;
+    left: -20px; } }

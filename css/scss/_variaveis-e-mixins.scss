@@ -137,3 +137,33 @@ $sm-device: 480px;
     display: block;
     margin: 0 auto;
 }
+
+//Mixins para o Carrossel
+
+@mixin carrossel-buttons{
+    .carrossel-next, .carrossel-prev{
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background-color: $color-regular;
+        border-radius: 50%;
+        top: 50%;
+        margin-top: -20px;
+        right: -20px;
+        cursor: pointer;
+        transition: transform 0.3s, opacity 0.3s;
+    
+        &-hidden{
+            display: none;
+        }
+    
+        &:hover{
+            transform: scale(1.2);
+        }
+    }
+    
+    .carrossel-prev{
+        right: auto;
+        left: -20px;
+    }
+}

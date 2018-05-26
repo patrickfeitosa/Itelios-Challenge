@@ -7,9 +7,9 @@
 
 // Função de Grid
 @function grid($col, $offset: false){
-    $width: $col / $cols * 100 + %;
-    $result: calc(#{$width} - #{$gutter});
-
+    $width: $col / $cols * 100;
+    //$result: calc(#{$width} - #{$gutter});
+    $result: $width + %;
     @if $offset == offset {
         $gutter: $gutter / 2;
         $result: calc(#{$width} + #{$gutter});

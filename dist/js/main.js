@@ -53,6 +53,8 @@ var Carrossel = function () {
         this.moveCallback.forEach(function (cb) {
             return cb(0);
         });
+        this.onWindowResize();
+        window.addEventListener('resize', this.onWindowResize.bind(this));
     }
 
     /**
@@ -140,6 +142,21 @@ var Carrossel = function () {
         key: 'onMove',
         value: function onMove(cb) {
             this.moveCallback.push(cb);
+        }
+    }, {
+        key: 'onWindowResize',
+        value: function onWindowResize() {
+            var _this4 = this;
+
+            console.log(window.innerWidth);
+            var mobile = window.innerWidth < 1199;
+            if (mobile !== this.isMobile) {
+                this.isMobile = mobile;
+                this.setStyle();
+                this.moveCallback.forEach(function (cb) {
+                    return cb(_this4.currentItem);
+                });
+            }
         }
 
         /**
