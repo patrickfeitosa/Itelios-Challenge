@@ -2,6 +2,33 @@
     position: relative;
     overflow: hidden;
 }
+
+.carrossel-container{
+    transition: transform 0.3s;
+}
+
 .carrossel-item{
     float: left;
+}
+
+.carrossel-next, .carrossel-prev{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: $color-regular;
+    border-radius: 50%;
+    top: 50%;
+    margin-top: -20px;
+    right: -20px;
+    cursor: pointer;
+    transition: transform 0.3s;
+
+    &:hover{
+        transform: scale(1.2);
+    }
+}
+
+.carrossel-prev{
+    right: auto;
+    left: -20px;
 }

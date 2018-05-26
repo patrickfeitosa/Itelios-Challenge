@@ -178,5 +178,33 @@
   position: relative;
   overflow: hidden; }
 
+.carrossel-container {
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s; }
+
 .carrossel-item {
   float: left; }
+
+.carrossel-next, .carrossel-prev {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: #303132;
+  border-radius: 50%;
+  top: 50%;
+  margin-top: -20px;
+  right: -20px;
+  cursor: pointer;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s; }
+  .carrossel-next:hover, .carrossel-prev:hover {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2); }
+
+.carrossel-prev {
+  right: auto;
+  left: -20px; }

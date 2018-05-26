@@ -27,10 +27,11 @@ var Carrossel = function () {
             slidesVisible: 1
         }, options);
         var children = [].slice.call(element.children);
-        var root = this.createDivWithClass('carrossel');
+        this.currentItem = 0;
+        this.root = this.createDivWithClass('carrossel');
         this.container = this.createDivWithClass('carrossel-container');
-        root.appendChild(this.container);
-        this.element.appendChild(root);
+        this.root.appendChild(this.container);
+        this.element.appendChild(this.root);
         this.itens = children.map(function (child) {
             var item = _this.createDivWithClass('carrossel-item');
             item.appendChild(child);
@@ -38,7 +39,13 @@ var Carrossel = function () {
             return item;
         });
         this.setStyle();
+        this.createNavigation();
     }
+
+    /**
+     * Aplica os tamanhos para os itens do carrossel
+     */
+
 
     _createClass(Carrossel, [{
         key: 'setStyle',
@@ -51,7 +58,44 @@ var Carrossel = function () {
                 return item.style.width = 100 / _this2.options.slidesVisible / ratio + "%";
             });
         }
+    }, {
+        key: 'createNavigation',
+        value: function createNavigation() {
+            var nextButton = this.createDivWithClass('carrossel-next');
+            var prevButton = this.createDivWithClass('carrossel-prev');
+            this.root.appendChild(nextButton);
+            this.root.appendChild(prevButton);
+            nextButton.addEventListener('click', this.next.bind(this));
+            prevButton.addEventListener('click', this.prev.bind(this));
+        }
+    }, {
+        key: 'next',
+        value: function next() {
+            this.goToItem(this.currentItem + this.options.slidesToScroll);
+        }
+    }, {
+        key: 'prev',
+        value: function prev() {
+            this.goToItem(this.currentItem - this.options.slidesToScroll);
+        }
 
+        /**
+         * Define o proximo salto do carrossel
+         * @param {number} index 
+         */
+
+    }, {
+        key: 'goToItem',
+        value: function goToItem(index) {
+            if (index < 0) {
+                index = this.itens.length - this.options.slidesVisible;
+            } else if (index >= this.itens.length || this.itens[this.currentItem + this.options.slidesVisible] === undefined) {
+                index = 0;
+            }
+            var translateX = index * -100 / this.itens.length;
+            this.container.style.transform = 'translate3d(' + translateX + '%, 0, 0)';
+            this.currentItem = index;
+        }
         /**
          * 
          * @param {string} className nome da classe para a div

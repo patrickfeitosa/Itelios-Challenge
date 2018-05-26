@@ -15,10 +15,11 @@ class Carrossel{
             slidesVisible: 1
         }, options)
         let children = [].slice.call(element.children)
-        let root = this.createDivWithClass('carrossel')
+        this.currentItem = 0
+        this.root = this.createDivWithClass('carrossel')
         this.container = this.createDivWithClass('carrossel-container')
-        root.appendChild(this.container)
-        this.element.appendChild(root)
+        this.root.appendChild(this.container)
+        this.element.appendChild(this.root)
         this.itens = children.map(child => {
             let item = this.createDivWithClass('carrossel-item')
             item.appendChild(child)
@@ -26,14 +27,50 @@ class Carrossel{
             return item
         });
         this.setStyle()
+        this.createNavigation()
     }
 
+    /**
+     * Aplica os tamanhos para os itens do carrossel
+     */
     setStyle(){
         let ratio = this.itens.length / this.options.slidesVisible
         this.container.style.width = (ratio * 100) + "%"
         this.itens.forEach(item => item.style.width = ((100/this.options.slidesVisible) / ratio) + "%");
     }
 
+    createNavigation(){
+        let nextButton = this.createDivWithClass('carrossel-next')
+        let prevButton = this.createDivWithClass('carrossel-prev')
+        this.root.appendChild(nextButton)
+        this.root.appendChild(prevButton)
+        nextButton.addEventListener('click', this.next.bind(this))
+        prevButton.addEventListener('click', this.prev.bind(this))
+    }
+
+
+    next(){
+        this.goToItem(this.currentItem + this.options.slidesToScroll)
+    }
+
+    prev(){
+        this.goToItem(this.currentItem - this.options.slidesToScroll)
+    }
+
+    /**
+     * Define o proximo salto do carrossel
+     * @param {number} index 
+     */
+    goToItem(index){
+        if(index < 0){
+            index = this.itens.length - this.options.slidesVisible
+        }else if(index >= this.itens.length || this.itens[this.currentItem + this.options.slidesVisible] === undefined){
+            index = 0
+        }
+        let translateX = index * -100 / this.itens.length
+        this.container.style.transform = 'translate3d(' + translateX + '%, 0, 0)'
+        this.currentItem = index
+    }
     /**
      * 
      * @param {string} className nome da classe para a div
