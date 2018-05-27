@@ -32,10 +32,10 @@ gulp.task('sass', compilaSass);
 function gulpJS(){
     return gulp.src('js/main/*.js')
         .pipe(concat('main.js'))
-        .pipe(babel({
+        /*.pipe(babel({
             presets:['env']
         }))
-        /*.pipe(uglify())*/
+        .pipe(uglify())*/
         .pipe(gulp.dest('./dist/js/'))
         .pipe(browserSync.stream());
 }

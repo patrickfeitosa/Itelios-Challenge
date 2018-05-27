@@ -24,13 +24,16 @@ class Carrossel{
             loop: false
         }, options)
         let children = [].slice.call(element.children)
-        this.isMobile = true
+        this.isMobile = false
         this.currentItem = 0
+        this.moveCallback = []
+
+        //Modificação da DOM
         this.root = this.createDivWithClass('carrossel')
         this.container = this.createDivWithClass('carrossel-container')
+        this.root.setAttribute('tabindex', '0')
         this.root.appendChild(this.container)
         this.element.appendChild(this.root)
-        this.moveCallback = []
         this.itens = children.map(child => {
             let item = this.createDivWithClass('carrossel-item')
             item.appendChild(child)
@@ -39,9 +42,18 @@ class Carrossel{
         });
         this.setStyle()
         this.createNavigation()
+
+        //Eventos
         this.moveCallback.forEach(cb => cb(0))
         this.onWindowResize()
         window.addEventListener('resize', this.onWindowResize.bind(this))
+        this.root.addEventListener('keyup', e =>{
+            if(e.key === 'ArrowRight' || e.key === 'Right'){
+                this.next()
+            } else if (e.key === 'ArrowLeft' || e.key === 'Left'){
+                this.prev()
+            }
+        })
     }
 
     /**
@@ -50,7 +62,7 @@ class Carrossel{
     setStyle(){
         let ratio = this.itens.length / this.slidesVisible
         this.container.style.width = (ratio * 100) + "%"
-        this.itens.forEach(item => item.style.width = ((100/this.slidesVisible) / ratio) + "%");
+        this.itens.forEach(item => item.style.width = ((100/this.slidesVisible) / ratio) + "%")
     }
 
     createNavigation(){
@@ -93,9 +105,17 @@ class Carrossel{
      */
     goToItem(index){
         if(index < 0){
-            index = this.itens.length - this.options.slidesVisible
-        }else if(index >= this.itens.length || (this.itens[this.currentItem + this.options.slidesVisible] === undefined && index > this.currentItem )){
-            index = 0
+            if(this.options.loop){
+                index = this.itens.length - this.slidesVisible
+            } else {
+                return
+            }
+        }else if(index >= this.itens.length || (this.itens[this.currentItem + this.slidesVisible] === undefined && index > this.currentItem )){
+            if(this.options.loop){
+                index = 0
+            } else {
+                return
+            }
         }
         let translateX = index * -100 / this.itens.length
         this.container.style.transform = 'translate3d(' + translateX + '%, 0, 0)'
@@ -153,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function(){
     
     new Carrossel(document.querySelector('#productRecomendation'),{
         slidesVisible: 3,
-        slidesToScroll: 1
+        slidesToScroll: 2
     })
 
 })
