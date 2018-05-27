@@ -9,7 +9,7 @@ $color-price-install: #5e6774;
 $color-border: #edeaea;
 $color-button: #adadad;
 $color-button-active: #353f4f;
-
+$color-button-font: #353f4f;
 //Tipografia
 @mixin type-title($size){
     font-family: 'Roboto Condensed', sans-serif;
@@ -36,6 +36,14 @@ $color-button-active: #353f4f;
     font-weight: bold !important;
     font-family: 'Roboto Black', sans-serif;
     line-height: 33px;
+}
+
+@mixin type-button($size){
+    font-size: $size + px;
+    color: $color-button-font !important;
+    font-weight: bold !important;
+    font-family: 'Roboto Condensed', sans-serif;
+
 }
 
 
@@ -123,7 +131,7 @@ $sm-device: 480px;
 @mixin border-content($color){
     border: 1px solid $color;
     @include device(lg){
-        &:nth-child(odd){            
+        &:nth-child(even){            
             border-top: 1px solid $color;
             border-bottom: 1px solid $color;
             border-right: 0px !important; 
@@ -168,4 +176,11 @@ $sm-device: 480px;
         right: auto;
         left: -20px;
     }
+}
+
+@mixin inner-top-box-shadow($color){
+    -webkit-box-shadow: inset 0px 400px 200px $color;
+       -moz-box-shadow: inset 0px 400px 200px $color;
+            box-shadow: inset 0px 400px 200px$color;
+    
 }

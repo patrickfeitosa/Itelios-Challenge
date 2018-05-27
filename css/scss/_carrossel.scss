@@ -9,6 +9,12 @@
 
 .carrossel-item{
     float: left;
+    &:hover{
+       @include inner-top-box-shadow($color-shadow);
+       .button-cart{
+           display: block;
+       }
+    }
 }
 
 @include device(md){

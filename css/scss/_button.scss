@@ -1,0 +1,25 @@
+.button-cart{
+    width: 100%;
+    @include type-button(18);
+    padding: 10px 16px;
+    border: 1px solid $color-border;
+    text-decoration: none;
+    display: none;
+    @include device(md){
+        display: block;
+        text-align: center;
+    }
+    @include device(sm){
+        display: block;
+        text-align: center;
+    }
+
+    &:hover{
+        border-left: solid 10px $color-active;
+
+        .material-icons{
+            color: $color-active;
+        }
+    }
+}
+
