@@ -18,3 +18,32 @@
 @include device(sm){
     @include carrossel-buttons;
 }
+
+.carrossel-pagination{
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    display: none;
+
+    &-button{
+        background-color: $color-button;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        margin: 0 3px;
+        transition: transform 0.3s;
+        cursor: pointer;
+        &-active, &:hover{
+            background-color: $color-button-active;
+        }
+    }
+}
+
+@include device(lg){
+    .carrossel-pagination{
+        display: block;
+    }
+}

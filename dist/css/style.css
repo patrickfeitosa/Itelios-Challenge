@@ -48,46 +48,46 @@
       width: 50%; } }
   @media screen and (max-width: 759px) {
     [class^="grid-"] {
-      width: 100%;
+      width: 100% !important;
       float: none;
       margin-right: 0px;
       margin-left: 0px; } }
 
 .offset-1 {
-  margin-left: calc(8.33333 + 10px); }
+  margin-left: calc(8.33333% + 10px); }
 
 .offset-2 {
-  margin-left: calc(16.66667 + 10px); }
+  margin-left: calc(16.66667% + 10px); }
 
 .offset-3 {
-  margin-left: calc(25 + 10px); }
+  margin-left: calc(25% + 10px); }
 
 .offset-4 {
-  margin-left: calc(33.33333 + 10px); }
+  margin-left: calc(33.33333% + 10px); }
 
 .offset-5 {
-  margin-left: calc(41.66667 + 10px); }
+  margin-left: calc(41.66667% + 10px); }
 
 .offset-6 {
-  margin-left: calc(50 + 10px); }
+  margin-left: calc(50% + 10px); }
 
 .offset-7 {
-  margin-left: calc(58.33333 + 10px); }
+  margin-left: calc(58.33333% + 10px); }
 
 .offset-8 {
-  margin-left: calc(66.66667 + 10px); }
+  margin-left: calc(66.66667% + 10px); }
 
 .offset-9 {
-  margin-left: calc(75 + 10px); }
+  margin-left: calc(75% + 10px); }
 
 .offset-10 {
-  margin-left: calc(83.33333 + 10px); }
+  margin-left: calc(83.33333% + 10px); }
 
 .offset-11 {
-  margin-left: calc(91.66667 + 10px); }
+  margin-left: calc(91.66667% + 10px); }
 
 .offset-12 {
-  margin-left: calc(100 + 10px); }
+  margin-left: calc(100% + 10px); }
 
 @media screen and (max-width: 759px) {
   .offset-1, .offset-2, .offset-3, .offset-4, .offset-5, .offset-6, .offset-7, .offset-8, .offset-9, .offset-10, .offset-11, .offset-12 {
@@ -234,3 +234,29 @@
   .carrossel-prev {
     right: auto;
     left: -20px; } }
+
+.carrossel-pagination {
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  display: none; }
+  .carrossel-pagination-button {
+    background-color: #adadad;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 3px;
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+    transition: transform 0.3s, -webkit-transform 0.3s;
+    cursor: pointer; }
+    .carrossel-pagination-button-active, .carrossel-pagination-button:hover {
+      background-color: #353f4f; }
+
+@media screen and (min-width: 1200px) {
+  .carrossel-pagination {
+    display: block; } }

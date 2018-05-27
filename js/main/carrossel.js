@@ -105,9 +105,11 @@ class Carrossel{
 
     //Criação da paginação na DOM
     createPagination(){
-        let pagination = this.createDivWithClass('carrossel-pagination')
+        let pagination = this.createDivWithClass('grid-9')
+        pagination.classList.add('offset-3')
+        pagination.classList.add('carrossel-pagination')
         let buttons = []
-        this.root.appendChild(pagination)
+        this.element.appendChild(pagination)
 
         for(let i = 0; i < this.itens.length; i = i + this.slidesToScroll){
             let button = this.createDivWithClass('carrossel-pagination-button')
@@ -115,6 +117,14 @@ class Carrossel{
             pagination.appendChild(button)
             buttons.push(button)
         }
+
+        this.onMove(index =>{
+            let activeButton =  buttons[Math.floor(index / this.slidesToScroll)]
+            if(activeButton){
+                buttons.forEach(button => button.classList.remove('carrossel-pagination-button-active'))
+                activeButton.classList.add('carrossel-pagination-button-active')
+            }
+        })
     }
 
 
@@ -196,11 +206,15 @@ class Carrossel{
     }
 }
 
-document.addEventListener('DOMContentLoaded', function(){
-    
+let onReady = function(){    
     new Carrossel(document.querySelector('#productRecomendation'),{
         slidesVisible: 3,
         slidesToScroll: 2
     })
+}
 
-})
+if(document.readyState !== 'loading'){
+    onReady()
+}
+
+document.addEventListener('DOMContentLoaded', onReady )
