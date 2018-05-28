@@ -159,7 +159,7 @@ $sm-device: 480px;
         border-radius: 50%;
         top: 50%;
         margin-top: -20px;
-        right: -20px;
+        right: 0px;
         cursor: pointer;
         transition: transform 0.3s, opacity 0.3s;
     
@@ -174,7 +174,7 @@ $sm-device: 480px;
     
     .carrossel-prev{
         right: auto;
-        left: -20px;
+        left: 0px;
     }
 }
 

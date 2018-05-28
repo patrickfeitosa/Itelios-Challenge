@@ -9,6 +9,7 @@
 
 .carrossel-item{
     float: left;
+    min-height: 546px;
     &:hover{
        @include inner-top-box-shadow($color-shadow);
        .button-cart{

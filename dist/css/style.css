@@ -185,7 +185,8 @@
   transition: transform 0.3s, -webkit-transform 0.3s; }
 
 .carrossel-item {
-  float: left; }
+  float: left;
+  min-height: 546px; }
   .carrossel-item:hover {
     -webkit-box-shadow: inset 0px 400px 200px #f4f4f4;
     box-shadow: inset 0px 400px 200px #f4f4f4; }
@@ -201,7 +202,7 @@
     border-radius: 50%;
     top: 50%;
     margin-top: -20px;
-    right: -20px;
+    right: 0px;
     cursor: pointer;
     -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
     transition: opacity 0.3s, -webkit-transform 0.3s;
@@ -214,7 +215,7 @@
       transform: scale(1.2); }
   .carrossel-prev {
     right: auto;
-    left: -20px; } }
+    left: 0px; } }
 
 @media screen and (max-width: 759px) {
   .carrossel-next, .carrossel-prev {
@@ -225,7 +226,7 @@
     border-radius: 50%;
     top: 50%;
     margin-top: -20px;
-    right: -20px;
+    right: 0px;
     cursor: pointer;
     -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
     transition: opacity 0.3s, -webkit-transform 0.3s;
@@ -238,7 +239,7 @@
       transform: scale(1.2); }
   .carrossel-prev {
     right: auto;
-    left: -20px; } }
+    left: 0px; } }
 
 .carrossel-pagination {
   position: absolute;

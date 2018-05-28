@@ -207,21 +207,7 @@ class Carrossel{
 }
 
 let onReady = function(){    
-    new Carrossel(document.querySelector('#productRecomendation'),{
-        slidesVisible: 3,
-        slidesToScroll: 2
-    })
-}
-
-if(document.readyState !== 'loading'){
-    onReady()
-}
-
-document.addEventListener('DOMContentLoaded', onReady )
-
-window.onload = function () {
-
-	const url = "http://localhost:3000/json/products.json";
+    const url = "http://localhost:3000/json/products.json";
 	fetch(url)
 		.then(response => response.json()) // retorna uma promise
 		.then(result => {
@@ -234,8 +220,6 @@ window.onload = function () {
 			let product = result[0].data.item
 			let indexStartPrice = product.productInfo.paymentConditions.indexOf('é') + 1
 			let indexFinishPrice = product.productInfo.paymentConditions.indexOf(',') + 2
-			
-			console.log(indexStartPrice)
 
 			//Percorrendo os Arrays retornados do JSON
 			htmlProduct = 
@@ -252,8 +236,32 @@ window.onload = function () {
 
 			let recommendation = result[0].data.recommendation
 			recommendation.forEach(item => {
-				console.log(item)
+				let indexStartPrice = item.productInfo.paymentConditions.indexOf('é') + 1
+				let indexFinishPrice = item.productInfo.paymentConditions.indexOf(',') + 2
+
+				htmlRecommendation +=
+				'<div class="product-content no-gutter">' +
+					'<img src="' + item.imageName.replace(JSONImage, newUrlImg) + '" alt="' + item.name + '" class="product-img">'+
+					'<p class="info-product">' + item.name + '</p>' +
+					'<p class="product-install">'+				
+						'Por: <span class="product-price">'+ item.price +'</span>' +
+						'<br>'+
+						'ou <span class="product-price-install">'+ item.productInfo.paymentConditions.substring(indexStartPrice, indexFinishPrice) +'</span> sem juros' +
+					'</p>'+
+					'<a href="#" class="grid-12 button-cart no-gutter">'+
+						'adicionar ao carrinho <i class="material-icons md-icon-18">add_shopping_cart</i>'+
+					'</a>'+
+				'</div>'
 			});
+
+			let recommendationContainer = document.querySelector('#productRecomendation')
+            recommendationContainer.innerHTML = htmlRecommendation
+            
+            
+            new Carrossel(document.querySelector('#productRecomendation'),{
+                slidesVisible: 3,
+                slidesToScroll: 2
+            })
 		})
 		.catch(err => {
 			// trata se alguma das promises falhar
@@ -261,3 +269,10 @@ window.onload = function () {
 		});
 }
 
+if(document.readyState !== 'loading'){
+    onReady()
+} 
+
+document.addEventListener('DOMContentLoaded', onReady )
+
+	
