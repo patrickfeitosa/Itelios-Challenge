@@ -171,6 +171,9 @@
       border-left: 0px !important; }
     .product-current:last-child {
       border-right: 1px solid #edeaea !important; } }
+  @media screen and (min-width: 760px) and (max-width: 1199px) {
+    .product-current {
+      min-height: 596px; } }
 
 .product-img {
   max-width: 100%;
@@ -199,6 +202,9 @@
       border-left: 0px !important; }
     .carrossel-item:last-child {
       border-right: 1px solid #edeaea !important; } }
+  @media screen and (min-width: 760px) and (max-width: 1199px) {
+    .carrossel-item {
+      min-height: 596px; } }
   .carrossel-item:hover {
     height: 580px;
     -webkit-box-shadow: inset 0px 400px 200px #f4f4f4;

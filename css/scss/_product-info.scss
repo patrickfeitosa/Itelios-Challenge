@@ -24,7 +24,11 @@
 
 .product-current{
     padding: 40px 25px;
-    @include border-content($color-border);
+    @include border-content($color-border);    
+    
+    @include device(md){
+        min-height: 596px;
+    }
 }
 .product-img{
     max-width: 100%;

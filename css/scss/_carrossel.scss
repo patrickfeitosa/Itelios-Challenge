@@ -11,6 +11,9 @@
     @include border-content($color-border);
     float: left;
     min-height: 546px;
+    @include device(md){
+        min-height: 596px;
+    }
     &:hover{
        height: 580px; 
        @include inner-top-box-shadow($color-shadow);
