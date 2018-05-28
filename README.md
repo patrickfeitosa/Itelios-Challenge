@@ -2,8 +2,10 @@
 
 Repositório criado com intuito de resolver o desafio proposto no seguinte [repositorio](https://github.com/iteliosbrasil/itelios-frontend-challenge)
 
+Tempo médio para finalização: 6 Horas.
+
 # Como executar o projeto
-- Pré requisito: ter o NodeJS com NPM instalado.
+Pré requisito: ter o NodeJS com NPM instalado.
 
 - 1º Baixe este repositório e salve aonde achar mais facil!
 - 2º Com a CLI de sua preferencia, acesse o diretorio em que você salvou o projeto.

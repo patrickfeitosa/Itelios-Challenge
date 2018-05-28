@@ -11,11 +11,10 @@ const uglify = require('gulp-uglify');
 //Função para complilar o SASS e adicionar os prefixos
 function compilaSass(){
     return gulp.src('css/scss/*.scss')
-    .pipe(sass(/*
-        Necessário apenas para ambiente de produção
+    .pipe(sass(
         {
         outputStyle: 'compressed'
-    }*/))
+    }))
     .pipe(autoprefixer({
         browsers: ['last 2 versions'],
         cascade: false
@@ -32,10 +31,10 @@ gulp.task('sass', compilaSass);
 function gulpJS(){
     return gulp.src('js/main/*.js')
         .pipe(concat('main.js'))
-        /*.pipe(babel({
+        .pipe(babel({
             presets:['env']
         }))
-        .pipe(uglify())*/
+        .pipe(uglify())
         .pipe(gulp.dest('./dist/js/'))
         .pipe(browserSync.stream());
 }
