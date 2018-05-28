@@ -1,5 +1,6 @@
 .button-cart{
     width: 100%;
+    margin-bottom: 15px;
     @include type-button(18);
     padding: 10px 16px;
     border: 1px solid $color-border;

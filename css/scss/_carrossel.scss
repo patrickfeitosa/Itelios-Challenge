@@ -7,10 +7,12 @@
     transition: transform 0.3s;
 }
 
-.carrossel-item{
+.carrossel-item{    
+    @include border-content($color-border);
     float: left;
     min-height: 546px;
     &:hover{
+       height: 580px; 
        @include inner-top-box-shadow($color-shadow);
        .button-cart{
            display: block;
