@@ -155,7 +155,8 @@ $sm-device: 480px;
         position: absolute;
         width: 40px;
         height: 40px;
-        background-color: $color-regular;
+        background: url('../img/icons/next.svg') center center no-repeat;
+        background-size: 20px 20px;
         border-radius: 50%;
         top: 50%;
         margin-top: -20px;
@@ -175,6 +176,8 @@ $sm-device: 480px;
     .carrossel-prev{
         right: auto;
         left: 0px;
+        background: url('../img/icons/back.svg') center center no-repeat;
+        background-size: 20px 20px;
     }
 }
 

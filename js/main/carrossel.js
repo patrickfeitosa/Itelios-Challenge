@@ -219,7 +219,7 @@ let onReady = function(){
 			let htmlRecommendation = ''
 			let product = result[0].data.item
 			let indexStartPrice = product.productInfo.paymentConditions.indexOf('é') + 1
-			let indexFinishPrice = product.productInfo.paymentConditions.indexOf(',') + 2
+			let indexFinishPrice = product.productInfo.paymentConditions.indexOf(',') + 3
 
 			//Percorrendo os Arrays retornados do JSON
 			htmlProduct = 
